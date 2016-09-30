@@ -2,29 +2,29 @@ package groupFiles;
 
 public class ChuJoke implements Topic {
 
-	private boolean inSchoolLoop;
-	private String schoolResponse;
+	private boolean inJokeLoop;
+	private String jokeResponse;
 
 	public void talk() {
-		inSchoolLoop = true;
-		while (inSchoolLoop){
-			MakinoonName.print("Tell me about school.");
-			schoolResponse = MakinoonName.getInput();
-			if(schoolResponse.indexOf("stop") >= 0){
-				inSchoolLoop = false;
+		inJokeLoop = true;
+		while (inJokeLoop){
+			MakinoonName.print("How about a joke?");
+			jokeResponse = MakinoonName.getInput();
+			if(jokeResponse.indexOf("stop") >= 0){
+				inJokeLoop = false;
 				MakinoonName.talkForever();
 			}
 			else{
-				MakinoonName.print("That's my favorite " + "part about school too.");
+				MakinoonName.print("");
 			}
 		}
 	}
 
 	public boolean isTriggered(String userInput) {
-		if(MakinoonName.findKeyword(userInput, "school", 0) >= 0){
+		if(MakinoonName.findKeyword(userInput, "", 0) >= 0){
 			return true;
 		}
-		if(MakinoonName.findKeyword(userInput, "class", 0) >= 0){
+		if(MakinoonName.findKeyword(userInput, "", 0) >= 0){
 			return true;
 		}
 		return false;
