@@ -9,6 +9,7 @@ public class MakinoonName {
 	static String response; 
 	static Topic math;
 	static Topic mess;
+	static Topic joke;
 	
 	public static void main(String[] args) {
 		
@@ -172,6 +173,7 @@ public class MakinoonName {
 		input = new Scanner(System.in);
 		math = new NikitaMath();
 		mess = new NguyenMess();
+		joke = new ChuJoke();
 	}
 	
 }
