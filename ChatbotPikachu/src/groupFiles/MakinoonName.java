@@ -7,8 +7,7 @@ public class MakinoonName {
 	static String user; 
 	static boolean inLoop; 
 	static String response; 
-	static Topic school;
-	static Topic like;//example
+	static Topic math;
 	
 	public static void main(String[] args) {
 		
@@ -37,14 +36,14 @@ public class MakinoonName {
 				print("I'm so happy that you're good");
 				
 			}
-			else if (like.isTriggered(response) ){
+			else if (math.isTriggered(response)){
 				inLoop = false; 
-				like.talk();
+				math.talk();
 			}
-			else if (findKeyword(response, "school", 0) >= 0 ){
-				inLoop = false; //exit this loop 
-				school.talk();
-			}
+//			else if (findKeyword(response, "school", 0) >= 0 ){
+//				inLoop = false; //exit this loop 
+//				school.talk();
+//			}
 			else {
 				
 				print("I'm sorry, I don't understand you.");
@@ -152,7 +151,7 @@ public class MakinoonName {
 				s = s.substring(nextWord.length());
 				//get the following word 
 				int endOfWord = s.indexOf(" ");
-				//check if its the last wor d
+				//check if its the last word
 				if(endOfWord < 0){
 					endOfWord = s.length() -1; 
 				}
@@ -166,8 +165,7 @@ public class MakinoonName {
 	public static void createTopics() {
 		
 		input = new Scanner(System.in);
-		school = new School ();
-		like = new MakinoonLike();
+		math = new NikitaMath();
 	}
 	
 }
