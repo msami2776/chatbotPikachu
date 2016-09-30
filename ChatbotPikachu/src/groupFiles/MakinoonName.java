@@ -8,6 +8,7 @@ public class MakinoonName {
 	static boolean inLoop; 
 	static String response; 
 	static Topic math;
+	static Topic joke;
 	
 	public static void main(String[] args) {
 		
@@ -166,6 +167,7 @@ public class MakinoonName {
 		
 		input = new Scanner(System.in);
 		math = new NikitaMath();
+		joke = new ChuJoke();
 	}
 	
 }
