@@ -8,6 +8,7 @@ public class MakinoonName {
 	static boolean inLoop; 
 	static String response; 
 	static Topic math;
+	static Topic mess;
 	
 	public static void main(String[] args) {
 		
@@ -39,6 +40,10 @@ public class MakinoonName {
 			else if (math.isTriggered(response)){
 				inLoop = false; 
 				math.talk();
+			}
+			else if (mess.isTriggered(response)){
+				inLoop = false; 
+				mess.talk();
 			}
 //			else if (findKeyword(response, "school", 0) >= 0 ){
 //				inLoop = false; //exit this loop 
@@ -166,6 +171,7 @@ public class MakinoonName {
 		
 		input = new Scanner(System.in);
 		math = new NikitaMath();
+		mess = new NguyenMess();
 	}
 	
 }
