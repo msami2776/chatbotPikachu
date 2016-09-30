@@ -1,17 +1,17 @@
 package groupFiles;
 
 public class NguyenMess implements Topic {
-
-	private boolean inSchoolLoop;
-	private String schoolResponse;
+	
+	private boolean inMessLoop;
+	private String messResponse;
 
 	public void talk() {
-		inSchoolLoop = true;
-		while (inSchoolLoop){
+		inMessLoop = true;
+		while (inMessLoop){
 			MakinoonName.print("Tell me about school.");
-			schoolResponse = MakinoonName.getInput();
-			if(schoolResponse.indexOf("stop") >= 0){
-				inSchoolLoop = false;
+			messResponse = MakinoonName.getInput();
+			if(messResponse.indexOf("stop") >= 0){
+				inMessLoop = false;
 				MakinoonName.talkForever();
 			}
 			else{
@@ -21,7 +21,7 @@ public class NguyenMess implements Topic {
 	}
 
 	public boolean isTriggered(String userInput) {
-		if(MakinoonName.findKeyword(userInput, "school", 0) >= 0){
+		if(MakinoonName.findKeyword(userInput, "homework", 0) >= 0){
 			return true;
 		}
 		if(MakinoonName.findKeyword(userInput, "class", 0) >= 0){
