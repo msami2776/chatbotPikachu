@@ -2,30 +2,26 @@ package groupFiles;
 
 public class NikitaMath implements Topic{
 	
-	private boolean inSchoolLoop;
-	private String schoolResponse;
+	private boolean inMathLoop;
+	private String mathResponse;
 
 	public void talk() {
-		inSchoolLoop = true;
-		while (inSchoolLoop){
-			MakinoonName.print("Tell me about school.");
-			schoolResponse = MakinoonName.getInput();
-			if(schoolResponse.indexOf("stop") >= 0){
-				inSchoolLoop = false;
-				MakinoonName.talkForever();
-			}
-			else{
-				MakinoonName.print("That's my favorite " + "part about school too.");
-			}
+		
+		inMathLoop = true;
+		
+		while (inMathLoop){
+			
 		}
 	}
 
 	public boolean isTriggered(String userInput) {
-		if(MakinoonName.findKeyword(userInput, "school", 0) >= 0){
-			return true;
-		}
-		if(MakinoonName.findKeyword(userInput, "class", 0) >= 0){
-			return true;
+		
+		String[] numbersArray = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+		
+		for(int i = 0; i < numbersArray.length; i++){
+			if(MakinoonName.findKeyword(userInput, numbersArray[i], 0) >= 0){
+				return true;
+			}
 		}
 		return false;
 	}
