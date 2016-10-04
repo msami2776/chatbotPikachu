@@ -8,10 +8,14 @@ public class MakinoonCostume implements Topic {
 	private String politicalParty; 
 	private String genre; 
 	private String sportCategory; 
-	private Costume[] costumeList; 
-	
+	private Costume[] costumeList = new Costume[17]; 
+	private String[] positiveAnswers = {"yes", "of course", "sure"};//create answers 
+	private String[] colors = {"red", "blue", "green", "yellow"};
 	
 	public void talk() {
+		
+			makeCostumeList(); 
+		
 		inCostumeLoop = true;
 		
 		while (inCostumeLoop){
@@ -19,20 +23,58 @@ public class MakinoonCostume implements Topic {
 					+ "for you?");
 			costumeResponse = MakinoonName.getInput();
 			
-			if(costumeResponse.indexOf("stop") >= 0){
+			boolean containsPositive = false; 
+			
+			for(int k = 0; k < positiveAnswers.length; k++){
+				
+				if(MakinoonName.findKeyword(costumeResponse, positiveAnswers[k], 0) >= 0){
+					containsPositive = true; 
+					MakinoonName.print("What's your favorite color?");
+					color = MakinoonName.getInput().toLowerCase();
+					MakinoonName.print("What category would you like: politics/music/sport?");
+					subject = MakinoonName.getInput();
+						if(subject.equals("politics")){
+							MakinoonName.print("What party do you prefer: democrat or republican?");
+							politicalParty = MakinoonName.getInput().toLowerCase();
+							String costumeName = findCostume();
+							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
+						}
+						if (subject.equals("sport")){
+							MakinoonName.print("Do you prefer soccer or football?"); 
+							sportCategory = MakinoonName.getInput().toLowerCase();
+							String costumeName = findCostume();
+							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
+						}
+						if(subject.equals("music")){
+							MakinoonName.print("Do you prefer hip-hip, rap or pop?"); 
+							genre = MakinoonName.getInput().toLowerCase();
+							String costumeName = findCostume();
+							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
+							
+						}
+						if(subject.equals("none")){
+							MakinoonName.print("Can I pick a superhero for you?");
+							if(MakinoonName.getInput().toLowerCase().equals("no")){
+								inCostumeLoop = false; 
+								MakinoonName.talkForever();
+								
+							}else{
+								subject = "superhero";
+								String costumeName = findCostume();
+								MakinoonName.print("The ideal costume for you is " + costumeName + "!");
+							}
+						}
+						inCostumeLoop = false; 
+						MakinoonName.talkForever();
+				}
+				
+			}
+			if (containsPositive == false ){
 				inCostumeLoop = false;
 				MakinoonName.talkForever();
 			}
 			
-			else {
-				
-				MakinoonName.print("What's your favorite color?");
-				color = costumeResponse;
-				MakinoonName.print("What category would you like: politics/music/sports?");
-				subject = costumeResponse;
-				
-			} 
-			String costumeName = findCostume(); 
+			
 			
 			
 		}
@@ -40,10 +82,10 @@ public class MakinoonCostume implements Topic {
 	
 	private void makeCostumeList(){
 		//politics - categorized by political party 
-		Costume trump = new Costume("Donald Trump", "n/a", "politics", "Republican", "n/a", "n/a");
+		Costume trump = new Costume("Donald Trump", "n/a", "politics", "depublican", "n/a", "n/a");
 		costumeList[0] = trump;
-		Costume hillary = new Costume("Hillary Clinton", "n/a", "politics", "Democrat", "n/a", "n/a");
-		costumeList[1] = trump;
+		Costume hillary = new Costume("Hillary Clinton", "n/a", "politics", "democrat", "n/a", "n/a");
+		costumeList[1] = hillary;
 		//Sports - categorized by jersey colors 
 		Costume mj = new Costume("Michael Jordan", "red", "sport", "n/a", "n/a", "basketball");
 		costumeList[2] = mj;
@@ -87,15 +129,15 @@ public class MakinoonCostume implements Topic {
 	}
 	private String findCostume(){
 		
-		Costume[] possibleCostume = new Costume[16];
+		Costume[] possibleCostume = new Costume[17];
 		int numberOfPossibleCostumes = 0; 
 		for ( int i = 0; i < costumeList.length; i++ ){
 			Costume currentCostume = costumeList[i]; 
-			if (currentCostume.color == color || currentCostume.color == "n/a"){ 
-				if( currentCostume.subject == subject || currentCostume.subject == "n/a"){
-					if( currentCostume.politicalParty == politicalParty || currentCostume.politicalParty == "n/a"){
-						if( currentCostume.genre == genre || currentCostume.genre == "n/a"){
-							if( currentCostume.sportCategory == sportCategory || currentCostume.sportCategory == "n/a"){
+			if (currentCostume.color.equals(color) || currentCostume.color.equals("n/a")) { 
+				if( currentCostume.subject.equals(subject) || currentCostume.subject.equals("n/a")){
+					if( currentCostume.politicalParty.equals(politicalParty) || currentCostume.politicalParty.equals("n/a")){
+						if( currentCostume.genre.equals(genre) || currentCostume.genre.equals("n/a")){
+							if( currentCostume.sportCategory.equals(sportCategory) || currentCostume.sportCategory.equals("n/a")){
 								possibleCostume[numberOfPossibleCostumes] = currentCostume; 
 								numberOfPossibleCostumes += 1; 
 							}
@@ -105,6 +147,11 @@ public class MakinoonCostume implements Topic {
 					
 				}
 			}
+		}
+		if(numberOfPossibleCostumes == 0 ){
+			System.out.println("Sorry I couldn't find your custom");
+			MakinoonName.talkForever();
+			
 		}
 		String chosenCostume = possibleCostume[0].name; 
 		return chosenCostume ;
