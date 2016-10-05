@@ -27,6 +27,12 @@ public class MakinoonCostume implements Topic {
 			
 			for(int k = 0; k < positiveAnswers.length; k++){
 				
+				//comments for me
+				/*Negative answers
+				 * checking keywords and matching it with the proper category
+				 */
+				
+				
 				if(MakinoonName.findKeyword(costumeResponse, positiveAnswers[k], 0) >= 0){
 					containsPositive = true; 
 					MakinoonName.print("What's your favorite color?");
