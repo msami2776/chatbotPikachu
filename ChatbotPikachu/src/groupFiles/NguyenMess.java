@@ -40,7 +40,7 @@ public class NguyenMess implements Topic {
 	
 	//private boolean inMessLoop;
 	//private String messResponse;
-	private int shutUpCount;
+	private int shutUpCount = 0;
 	private String repeatedResponse;
 	private String whichResponse;//checks the response to see how to reply
 	
@@ -52,6 +52,7 @@ public class NguyenMess implements Topic {
 	String[] shutUpResponseArray = {"HEY! You can't tell me what to do.", "Or what?", "Don't boss me!","Why so rude?!"}; 
 	String[] questionResponseArray = {"Do I have to answer that question?", "Can I not answer that question?", "Do I HAVE to answer?"}; 
 	 
+	
 
 	public void talk() {
 		if(whichResponse == "1")

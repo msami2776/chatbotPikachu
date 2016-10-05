@@ -51,10 +51,10 @@ public class MakinoonName {
 				inLoop = false; 
 				costume.talk(); 
 			}
-//			else if (findKeyword(response, "school", 0) >= 0 ){
-//				inLoop = false; //exit this loop 
-//				school.talk();
-//			}
+			else if (joke.isTriggered(response)){
+				inLoop = false; 
+				joke.talk(); 
+			}
 			else {
 				
 				print("I'm sorry, I don't understand you.");
