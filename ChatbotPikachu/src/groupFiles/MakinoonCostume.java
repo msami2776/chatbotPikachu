@@ -64,14 +64,17 @@ public class MakinoonCostume implements Topic {
 								inCostumeLoop = false; 
 								MakinoonName.talkForever();
 								
-							}else{
+							}
+							if(MakinoonName.getInput().toLowerCase().equals("yes")){
 								subject = "superhero";
 								String costumeName = findCostume();
 								MakinoonName.print("The ideal costume for you is " + costumeName + "!");
 							}
-						}
-						inCostumeLoop = false; 
+						}else{
+							inCostumeLoop = false; 
 						MakinoonName.talkForever();
+						}
+						
 				}
 				
 			}
@@ -84,6 +87,29 @@ public class MakinoonCostume implements Topic {
 			
 			
 		}
+	}
+	
+	public String getColorResponse(String input, String[] anyArray){
+		String colorSelected = "";
+		boolean coninuing = true;
+		while(coninuing){
+			//check if the input is any color
+			for(int i = 0; i < anyArray.length; i++){
+				if(MakinoonName.findKeyword(input, anyArray[i], 0) >=0){
+					colorSelected = anyArray[i];
+					return colorSelected; //ends method
+				}	
+			}
+			if(MakinoonName.findKeyword(input, "stop", 0) >= 0){
+				coninuing = false;
+				MakinoonName.talkForever();
+			}else{
+				MakinoonName.print("You did not type a color I match you. Please enter something else");
+				input = MakinoonName.getInput();
+				
+			}
+		}
+		return "stop";
 	}
 	
 	private void makeCostumeList(){

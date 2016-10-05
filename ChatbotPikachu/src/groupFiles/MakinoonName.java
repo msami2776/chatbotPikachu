@@ -19,7 +19,6 @@ public class MakinoonName {
 		//-1 comes before, 1 comes after
 		promptName();
 		talkForever(); 
- 		//ap comp sci api
  	}
 	public static void promptName() {
 		print("Hello, human! I'm a board covered "
@@ -65,18 +64,18 @@ public class MakinoonName {
 	}
 	public static int findKeyword(String searchString, 
 			String key, int startIndex) {
-		//delete white space 	
+		
 		String phrase = searchString.trim(); 
-		System.out.println("The trimmed phrase: " + phrase);
-		//set all letters to lowercase
+		//System.out.println("The trimmed phrase: " + phrase);
+	
 		phrase = phrase.toLowerCase();
 		key = key.toLowerCase();
 		
-		System.out.println("The phrase is " + phrase);
-		System.out.println("The key is " + key);
+//		System.out.println("The phrase is " + phrase);
+//		System.out.println("The key is " + key);
 	
 		int psn = phrase.indexOf(key);
-		System.out.println("The psn found is " + psn);
+		//System.out.println("The psn found is " + psn);
 		//keep looking for 
 		while (psn >= 0){
 			String before = " ";
@@ -85,15 +84,15 @@ public class MakinoonName {
 				after = phrase.substring(psn + key.length(), psn + 
 						key.length()+1).toLowerCase();
 				
-				System.out.println("The character after " + key + "is" + after);
+				//System.out.println("The character after " + key + "is" + after);
 			}
 			//if the phrase doesn't begin with this word
 			if (psn > 0){
 				before = phrase.substring(psn -1, psn).toLowerCase(); 
-				System.out.println("The character before " + key + "is" + before);
+				//System.out.println("The character before " + key + "is" + before);
 			}
 			if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
-				System.out.println("Key was found at " + psn);
+				//System.out.println("Key was found at " + psn);
 				
 				if(noNegotiations(phrase, psn)){
 					return psn;
@@ -103,7 +102,7 @@ public class MakinoonName {
 			// in case the keyword was not found yet. 
 			//check thhe rest of the string 
 			psn = phrase.indexOf(key, psn+1);
-			System.out.println(key + " was not found." + "Checking" + psn);
+			//System.out.println(key + " was not found." + "Checking" + psn);
 		}
 		return -1;
 	}
