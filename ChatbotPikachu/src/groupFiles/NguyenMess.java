@@ -1,12 +1,9 @@
 /*
 package groupFiles;
-
-
 public class NguyenMess implements Topic {
 	
 	private boolean inMessLoop;
 	private String messResponse;
-
 	public void talk() {
 		inMessLoop = true;
 		while (inMessLoop){
@@ -21,7 +18,6 @@ public class NguyenMess implements Topic {
 			}
 		}
 	}
-
 	public boolean isTriggered(String userInput) {
 		if(MakinoonName.findKeyword(userInput, "homework", 0) >= 0){
 			return true;
