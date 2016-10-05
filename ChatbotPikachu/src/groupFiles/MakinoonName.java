@@ -10,6 +10,7 @@ public class MakinoonName {
 	static Topic math;
 	static Topic mess;
 	static Topic joke;
+	static Topic costume; 
 	
 	public static void main(String[] args) {
 		
@@ -45,6 +46,10 @@ public class MakinoonName {
 			else if (mess.isTriggered(response)){
 				inLoop = false; 
 				mess.talk();
+			}
+			else if (costume.isTriggered(response)){
+				inLoop = false; 
+				costume.talk(); 
 			}
 //			else if (findKeyword(response, "school", 0) >= 0 ){
 //				inLoop = false; //exit this loop 
@@ -174,6 +179,7 @@ public class MakinoonName {
 		math = new NikitaMath();
 		mess = new NguyenMess();
 		joke = new ChuJoke();
+		costume = new MakinoonCostume(); 
 	}
 	
 }
