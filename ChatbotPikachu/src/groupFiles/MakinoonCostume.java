@@ -10,7 +10,11 @@ public class MakinoonCostume implements Topic {
 	private String sportCategory; 
 	private Costume[] costumeList = new Costume[17]; 
 	private String[] positiveAnswers = {"yes", "of course", "sure"};//create answers 
-	private String[] colors = {"red", "blue", "green", "yellow"};
+	private String[] colors = {"red", "blue", "green", "black"};
+	private String[] subjects = {"politics", "sport", "music"};
+	private String[] politicParty = {"democrat", "republican"};
+	private String[] genres = {"hip-hop", "rap", "pop"}; 
+	private String[] sportsCategory = {"baskbetball", "soccer"}; 
 	
 	public void talk() {
 		
@@ -27,7 +31,7 @@ public class MakinoonCostume implements Topic {
 			
 			for(int k = 0; k < positiveAnswers.length; k++){
 				
-				//comments for me
+	
 				/*Negative answers
 				 * checking keywords and matching it with the proper category
 				 */
@@ -36,7 +40,10 @@ public class MakinoonCostume implements Topic {
 				if(MakinoonName.findKeyword(costumeResponse, positiveAnswers[k], 0) >= 0){
 					containsPositive = true; 
 					MakinoonName.print("What's your favorite color?");
-					color = MakinoonName.getInput().toLowerCase();
+					String response =  getResponse(MakinoonName.getInput(), colors);
+					color = response; 
+					System.out.println(color);
+					
 					MakinoonName.print("What category would you like: politics/music/sport?");
 					subject = MakinoonName.getInput();
 						if(subject.equals("politics")){
@@ -46,7 +53,7 @@ public class MakinoonCostume implements Topic {
 							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
 						}
 						if (subject.equals("sport")){
-							MakinoonName.print("Do you prefer soccer or football?"); 
+							MakinoonName.print("Do you prefer soccer or basketball?"); 
 							sportCategory = MakinoonName.getInput().toLowerCase();
 							String costumeName = findCostume();
 							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
@@ -89,22 +96,27 @@ public class MakinoonCostume implements Topic {
 		}
 	}
 	
-	public String getColorResponse(String input, String[] anyArray){
-		String colorSelected = "";
+	public String getResponse(String input, String[] anyArray){
+		String inputSelected = "";
 		boolean coninuing = true;
 		while(coninuing){
+			String options = "";
 			//check if the input is any color
 			for(int i = 0; i < anyArray.length; i++){
+				options += anyArray[i] + " ";
+				
 				if(MakinoonName.findKeyword(input, anyArray[i], 0) >=0){
-					colorSelected = anyArray[i];
-					return colorSelected; //ends method
+					inputSelected = anyArray[i];
+					return inputSelected; //ends method
 				}	
 			}
 			if(MakinoonName.findKeyword(input, "stop", 0) >= 0){
 				coninuing = false;
 				MakinoonName.talkForever();
 			}else{
-				MakinoonName.print("You did not type a color I match you. Please enter something else");
+				MakinoonName.print("sorry, I can only match "+ options
+						+ "Please enter something else");
+				
 				input = MakinoonName.getInput();
 				
 			}
