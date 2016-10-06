@@ -1,7 +1,7 @@
 package groupFiles;
 
 import java.util.Scanner;
-	//\n is space
+
 public class MakinoonName {
 	static Scanner input; 
 	static String user; 
@@ -11,19 +11,15 @@ public class MakinoonName {
 	static Topic mess;
 	static Topic joke;
 	static Topic costume; 
-	
+
 	public static void main(String[] args) {
-		
+
 		createTopics();
-		//characters come before
-		//-1 comes before, 1 comes after
 		promptName();
 		talkForever(); 
- 	}
+	}
 	public static void promptName() {
-		print("Hello, human! I'm a board covered "
-				+ "with semiconductors and "
-				+ "other such components. "
+		print("Hello, human! "
 				+ "What is your name?");
 		user = input.nextLine();
 		print("Awesome. I will call you " + user + 
@@ -36,22 +32,23 @@ public class MakinoonName {
 			response = getInput(); 
 			if(findKeyword(response, "good", 0) >= 0){
 				print("I'm so happy that you're good");
-				
-			}
-			else if (math.isTriggered(response)){
-				inLoop = false; 
-				print("triggered math");
-				math.talk();
-			}
-			else if (mess.isTriggered(response)){
-				inLoop = false; 
-				print("triggered mess");
-				mess.talk();
+
 			}
 			else if (costume.isTriggered(response)){
 				inLoop = false; 
 				print("triggered costume");
 				costume.talk(); 
+			}
+
+						else if (mess.isTriggered(response)){
+							inLoop = false; 
+							print("triggered mess");
+							mess.talk();
+						}
+			else if (math.isTriggered(response)){
+				inLoop = false; 
+				print("triggered math");
+				math.talk();
 			}
 			else if (joke.isTriggered(response)){
 				inLoop = false; 
@@ -59,35 +56,40 @@ public class MakinoonName {
 				joke.talk(); 
 			}
 			else {
-				
+
 				print("I'm sorry, I don't understand you.");
-				
+
 			}
+
 			
 		}
 	}
+
 	public static int findKeyword(String searchString, 
 			String key, int startIndex) {
+
+		if(key.equals("") && searchString.equals("")){
+			return 0;
+		}else if (key.equals("")){
+			return -1;
+		}
+			
 		
 		String phrase = searchString.trim(); 
-		//System.out.println("The trimmed phrase: " + phrase);
-	
+
 		phrase = phrase.toLowerCase();
+
 		key = key.toLowerCase();
-		
-//		System.out.println("The phrase is " + phrase);
-//		System.out.println("The key is " + key);
-	
+
 		int psn = phrase.indexOf(key);
-		//System.out.println("The psn found is " + psn);
-		//keep looking for 
+
 		while (psn >= 0){
 			String before = " ";
 			String after = " ";
 			if (psn + key.length() < phrase.length()){
 				after = phrase.substring(psn + key.length(), psn + 
 						key.length()+1).toLowerCase();
-				
+
 				//System.out.println("The character after " + key + "is" + after);
 			}
 			//if the phrase doesn't begin with this word
@@ -96,12 +98,12 @@ public class MakinoonName {
 				//System.out.println("The character before " + key + "is" + before);
 			}
 			if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
-				//System.out.println("Key was found at " + psn);
-				
+//				System.out.println("Key was found at " + psn);
+
 				if(noNegotiations(phrase, psn)){
 					return psn;
 				}
-				
+
 			}
 			// in case the keyword was not found yet. 
 			//check thhe rest of the string 
@@ -114,28 +116,28 @@ public class MakinoonName {
 	//very common when you need to do the same thing repeatedly 
 	//they also help make methods more readable 
 	//this method is private bc it is only used by the method it is helping 
-	
+
 	private static boolean noNegotiations(String phrase, int index){
 		//check for no 
 		//check to see if there is space for the word 
 		if(index - 3 >= 0 
-		&& phrase.substring(index - 3, index ).equals("no ")){
+				&& phrase.substring(index - 3, index ).equals("no ")){
 			return false; 
 		}
 		if(index - 4 >= 0 
-			&& phrase.substring(index - 4, index ).equals("not ")){
-				return false; 
-			}
+				&& phrase.substring(index - 4, index ).equals("not ")){
+			return false; 
+		}
 		if(index - 6 >= 0 
 				&& phrase.substring(index - 6, index ).equals("no ")){
-					return false; 
-				}
+			return false; 
+		}
 		if(index - 4 >= 0 
 				&& phrase.substring(index - 4, index ).equals("n't ")){
-					return false; 
-				}
+			return false; 
+		}
 		return true;
-		
+
 	}
 	public static void promptInput() {
 		print(user + ", try inputting a String!");
@@ -146,11 +148,11 @@ public class MakinoonName {
 		return input.nextLine();
 	}
 	public static void print(String s) {
-			
+
 		//create a multi-line string
-		String printString = " " ; 
-	
-		int cutOff = 35; 
+		String printString = "" ; 
+
+		int cutOff = 65; 
 		//check to see if there are words to add 
 		//(in other words, is length of s > 0 
 		while(s.length() > 0 ){
@@ -174,15 +176,15 @@ public class MakinoonName {
 			printString += currentLine + "\n";
 		}
 		System.out.println(printString);
-		
+
 	}
 	public static void createTopics() {
-		
+
 		input = new Scanner(System.in);
 		math = new NikitaMath();
 		mess = new NguyenMess();
 		joke = new ChuJoke();
 		costume = new MakinoonCostume(); 
 	}
-	
+
 }
