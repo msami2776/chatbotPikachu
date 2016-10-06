@@ -9,12 +9,12 @@ public class MakinoonCostume implements Topic {
 	private String genre; 
 	private String sportCategory; 
 	private Costume[] costumeList = new Costume[17]; 
-	private String[] positiveAnswers = {"yes", "of course", "sure"};//create answers 
+	private String[] positiveAnswers = {"yes", "of course", "sure", "please"};//create answers
 	private String[] colors = {"red", "blue", "green", "black"};
 	private String[] subjects = {"politics", "sport", "music"};
 	private String[] politicParty = {"democrat", "republican"};
 	private String[] genres = {"hip-hop", "rap", "pop"}; 
-	private String[] sportsCategory = {"baskbetball", "soccer"}; 
+	private String[] sports= {"baskbetball", "soccer"}; 
 	
 	public void talk() {
 		
@@ -40,27 +40,31 @@ public class MakinoonCostume implements Topic {
 				if(MakinoonName.findKeyword(costumeResponse, positiveAnswers[k], 0) >= 0){
 					containsPositive = true; 
 					MakinoonName.print("What's your favorite color?");
-					String response =  getResponse(MakinoonName.getInput(), colors);
-					color = response; 
-					System.out.println(color);
+					String colorResponse =  getResponse(MakinoonName.getInput(), colors);
+					color = colorResponse; 
+					
 					
 					MakinoonName.print("What category would you like: politics/music/sport?");
-					subject = MakinoonName.getInput();
+					subject =  MakinoonName.getInput();
 						if(subject.equals("politics")){
-							MakinoonName.print("What party do you prefer: democrat or republican?");
-							politicalParty = MakinoonName.getInput().toLowerCase();
+							MakinoonName.print("Do you prefer a democrat or republican?");
+							String partyResponse =  getResponse(MakinoonName.getInput(), politicParty);
+							politicalParty = partyResponse; 
 							String costumeName = findCostume();
 							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
 						}
 						if (subject.equals("sport")){
 							MakinoonName.print("Do you prefer soccer or basketball?"); 
-							sportCategory = MakinoonName.getInput().toLowerCase();
+							String sportResponse =  getResponse(MakinoonName.getInput(), sports);
+							sportCategory = sportResponse; 
 							String costumeName = findCostume();
 							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
 						}
 						if(subject.equals("music")){
 							MakinoonName.print("Do you prefer hip-hip, rap or pop?"); 
-							genre = MakinoonName.getInput().toLowerCase();
+							
+							String genreResponse =  getResponse(MakinoonName.getInput(), genres);
+							genre = genreResponse; 
 							String costumeName = findCostume();
 							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
 							
@@ -110,12 +114,16 @@ public class MakinoonCostume implements Topic {
 					return inputSelected; //ends method
 				}	
 			}
-			if(MakinoonName.findKeyword(input, "stop", 0) >= 0){
+			if(MakinoonName.findKeyword(input, "stop", 0) >= 0
+					||MakinoonName.findKeyword(input, "not interested", 0) >= 0
+					||MakinoonName.findKeyword(input, "I don't want to", 0) >= 0
+					||MakinoonName.findKeyword(input, "forget it", 0) >= 0
+					){
 				coninuing = false;
 				MakinoonName.talkForever();
 			}else{
 				MakinoonName.print("sorry, I can only match "+ options
-						+ "Please enter something else");
+						+ "\n Please enter something else");
 				
 				input = MakinoonName.getInput();
 				

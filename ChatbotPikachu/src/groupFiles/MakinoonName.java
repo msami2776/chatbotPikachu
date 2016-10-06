@@ -40,18 +40,22 @@ public class MakinoonName {
 			}
 			else if (math.isTriggered(response)){
 				inLoop = false; 
+				print("triggered math");
 				math.talk();
 			}
 			else if (mess.isTriggered(response)){
 				inLoop = false; 
+				print("triggered mess");
 				mess.talk();
 			}
 			else if (costume.isTriggered(response)){
 				inLoop = false; 
+				print("triggered costume");
 				costume.talk(); 
 			}
 			else if (joke.isTriggered(response)){
 				inLoop = false; 
+				print("triggered joke");
 				joke.talk(); 
 			}
 			else {
