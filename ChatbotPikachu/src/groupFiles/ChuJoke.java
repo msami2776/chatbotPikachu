@@ -9,8 +9,8 @@ public class ChuJoke implements Topic {
 	private int messCount = -1;
 	private int jokeNum = 0;
 	private String jokeResponse;
-	private String jokeWord[] = {"joke1", "joke2", "joke3"};//add jokes later
-	private String jokePhrase[] = {"joke1", "joke2", "joke3"};
+	private String jokeWord[] = {"Wanda.","Witch.","Ghost.","Orange.","Emma.","Phillip.","Bean.","Frank.","Ben.","Witch."};//add jokes later
+	private String jokePhrase[] = {"Wanda go and get me some treats!","Witch do you want a trick or treat!","Long time no see!","Orange you glad it’s Halloween?","Emma going to get any Halloween candy!","Phillip my bag with Halloween candy, please!","Bean waiting all day to go Trick or Treating!","Frankenstein!","Ben waiting for Halloween candy all year!","Witch one of you can fix my broomstick?"};
 	private String calmWrongResponse[] = {"That's not how the joke goes!","Come on, I thought you wanted to hear a joke!","Ugh, let's try this again from the top"};
 	private String angryWrongResponse[] = {"You're supposed to be following along with the joke! Let's try that again","Seriously?","Why do I bother..."};
 	private String dejectedResponse[] = {"Oh, okay then...","I didn't think my jokes were that bad.","Maybe some other time"};
