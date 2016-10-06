@@ -14,6 +14,7 @@ public class ChuJoke implements Topic {
 	private String calmWrongResponse[] = {"That's not how the joke goes!","Come on, I thought you wanted to hear a joke!","Ugh, let's try this again from the top"};
 	private String angryWrongResponse[] = {"You're supposed to be following along with the joke! Let's try that again","Seriously?","Why do I bother..."};
 	private String dejectedResponse[] = {"Oh, okay then...","I didn't think my jokes were that bad.","Maybe some other time"};
+	private String escapeResponse[] = {"That's it; I'm out of jokes for today.","I've had enough of knock-knock jokes for one day. Why don't you try something else? Like annoy me?(hint, hint)","Haven't you had enough of knock-knock jokes for one day?"};
 	
 	public static int randInt(int min, int max) {
 		Random gen = new Random();
@@ -68,6 +69,10 @@ public class ChuJoke implements Topic {
 						}
 					}
 					jokeNum++;
+					if(jokeNum == jokeWord.length){
+						MakinoonName.print(escapeResponse[randInt(0,escapeResponse.length)]);
+						MakinoonName.talkForever();
+					}
 					MakinoonName.print("Do you want to hear another joke?");
 					jokeResponse = MakinoonName.getInput();
 					if(jokeResponse.indexOf("no") >= 0){
