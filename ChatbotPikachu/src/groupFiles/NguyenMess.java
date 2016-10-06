@@ -15,7 +15,7 @@ public class NguyenMess implements Topic {
 	
 	String[] shutUpResponseArray = {"HEY! You can't tell me what to do. Or I'll haunt you forever!", "Or what?", "Don't boss me!","Why so rude?!"}; 
 	String[] questionResponseArray = {"Do I have to answer that question?", "Can I not answer that question?", "Do I HAVE to answer?"}; 
-	String[] emptyResponseArray = {"Can you please type something?","Type something PLEASE.","Guess we're not talking."};
+	String[] emptyResponseArray = {"Can you please type something?","Type something PLEASE.","You ignored me three times, Guess we're not talking."};
 	
 
 	public void talk() {
