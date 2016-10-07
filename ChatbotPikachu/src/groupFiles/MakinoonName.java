@@ -19,19 +19,20 @@ public class MakinoonName {
 		talkForever(); 
 	}
 	public static void promptName() {
-		print("Hello, human! "
+		print("Welcome. I'm your Halloween Ghost.\n"
 				+ "What is your name?");
 		user = input.nextLine();
-		print("Awesome. I will call you " + user + 
-				" until you terminate me!");
+		print("Fine, I will call you " + user + 
+				" until you press the red button!");
 	}
 	public static void talkForever(){
 		inLoop = true; 
 		while(inLoop){
-			print("Greetings, " + user + "! How are you?");
+			print(user + ", I can pick a halloween costume, help you with a last minute Math homework or tell you a joke. "
+					+ "What would you like?");
 			response = getInput(); 
-			if(findKeyword(response, "good", 0) >= 0){
-				print("I'm so happy that you're good");
+			if(findKeyword(response, "nothing", 0) >= 0){
+				print("Alright, I'll be here haunting your dreams.");
 
 			}
 			else if (costume.isTriggered(response)){
@@ -57,7 +58,7 @@ public class MakinoonName {
 			}
 			else {
 
-				print("I'm sorry, I don't understand you.");
+				print("I don't understand you, try again.");
 
 			}
 
@@ -90,36 +91,28 @@ public class MakinoonName {
 				after = phrase.substring(psn + key.length(), psn + 
 						key.length()+1).toLowerCase();
 
-				//System.out.println("The character after " + key + "is" + after);
 			}
-			//if the phrase doesn't begin with this word
+
 			if (psn > 0){
 				before = phrase.substring(psn -1, psn).toLowerCase(); 
-				//System.out.println("The character before " + key + "is" + before);
+			
 			}
 			if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
-//				System.out.println("Key was found at " + psn);
-
+//			
 				if(noNegotiations(phrase, psn)){
 					return psn;
 				}
 
 			}
-			// in case the keyword was not found yet. 
-			//check thhe rest of the string 
-			psn = phrase.indexOf(key, psn+1);
-			//System.out.println(key + " was not found." + "Checking" + psn);
-		}
+			
+				psn = phrase.indexOf(key, psn+1);
+					}
 		return -1;
 	}
-	//helper method - contributes functionality to another method 
-	//very common when you need to do the same thing repeatedly 
-	//they also help make methods more readable 
 	//this method is private bc it is only used by the method it is helping 
 
 	private static boolean noNegotiations(String phrase, int index){
-		//check for no 
-		//check to see if there is space for the word 
+		
 		if(index - 3 >= 0 
 				&& phrase.substring(index - 3, index ).equals("no ")){
 			return false; 
@@ -148,26 +141,24 @@ public class MakinoonName {
 		return input.nextLine();
 	}
 	public static void print(String s) {
-
-		//create a multi-line string
+ 
 		String printString = "" ; 
 
 		int cutOff = 65; 
-		//check to see if there are words to add 
-		//(in other words, is length of s > 0 
+		
 		while(s.length() > 0 ){
 			String currentLine = ""; 
 			String nextWord = ""; 
-			//while the currentline and the nextWord < cutoff and still got words to add
+			
 			while (currentLine.length() + nextWord.length() <= cutOff 
 					&& s.length() > 0){
-				//add the nextword to the line 
+				
 				currentLine += nextWord; 
-				//remove the word 
+				
 				s = s.substring(nextWord.length());
-				//get the following word 
+				
 				int endOfWord = s.indexOf(" ");
-				//check if its the last word
+				
 				if(endOfWord < 0){
 					endOfWord = s.length() -1; 
 				}

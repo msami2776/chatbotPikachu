@@ -9,9 +9,9 @@ public class MakinoonCostume implements Topic {
 	private String genre; 
 	private String sportCategory; 
 	private Costume[] costumeList = new Costume[17]; 
-	private String[] positiveAnswers = {"yes", "of course", "sure", "please"};//create answers
+	private String[] positiveAnswers = {"yes", "of course", "sure", "please", "okay", "go ahead"};
 	private String[] colors = {"red", "blue", "green", "black"};
-	private String[] subjects = {"politics", "sport", "music"};
+	private String[] subjects = {"politics", "sports", "music", "superheroes"};
 	private String[] politicParty = {"democrat", "republican"};
 	private String[] genres = {"hip-hop", "rap", "pop"}; 
 	private String[] sports= {"baskbetball", "soccer"}; 
@@ -23,7 +23,7 @@ public class MakinoonCostume implements Topic {
 		inCostumeLoop = true;
 		
 		while (inCostumeLoop){
-			MakinoonName.print("Would you like me to pick a costume "
+			MakinoonName.print("So, you want me to pick a costume "
 					+ "for you?");
 			costumeResponse = MakinoonName.getInput();
 			
@@ -32,56 +32,55 @@ public class MakinoonCostume implements Topic {
 			for(int k = 0; k < positiveAnswers.length; k++){
 				
 	
-				/*Negative answers
-				 * checking keywords and matching it with the proper category
-				 */
 				
 				
+				//after finding positive answers, the loop continues
 				if(MakinoonName.findKeyword(costumeResponse, positiveAnswers[k], 0) >= 0){
 					containsPositive = true; 
 					MakinoonName.print("What's your favorite color?");
 					String colorResponse =  getResponse(MakinoonName.getInput(), colors);
+					System.out.println(colorResponse);
 					color = colorResponse; 
 					
 					
-					MakinoonName.print("Would you like to be a politician/athlete/musician/superhero?");
+					MakinoonName.print("Do you like politics/sports/music/superheroes?");
 					String subjectResponse =  getResponse(MakinoonName.getInput(), subjects);
 					subject = subjectResponse; 
-						if(subject.equals("politician")){
+					System.out.println(subjectResponse);
+						if(subject.equals("politics")){
 							MakinoonName.print("Do you prefer a Democrat or Republican?");
 							String partyResponse =  getResponse(MakinoonName.getInput(), politicParty);
+							System.out.println(partyResponse);
 							politicalParty = partyResponse; 
 							String costumeName = findCostume();
 							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
+							MakinoonName.talkForever();
 						}
-						if (subject.equals("athlete")){
+						else if (subject.equals("sports")){
 							MakinoonName.print("Do you prefer soccer or basketball?"); 
 							String sportResponse =  getResponse(MakinoonName.getInput(), sports);
 							sportCategory = sportResponse; 
+							System.out.println(sportResponse);
 							String costumeName = findCostume();
 							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
+							MakinoonName.talkForever();
 						}
-						if(subject.equals("musician")){
+						else if(subject.equals("music")){
 							MakinoonName.print("Do you prefer hip-hip, rap or pop?"); 
 							
 							String genreResponse =  getResponse(MakinoonName.getInput(), genres);
 							genre = genreResponse; 
 							String costumeName = findCostume();
 							MakinoonName.print("The ideal costume for you is " + costumeName + "!");
-							
+							MakinoonName.talkForever();
 						}
-						if(subject.equals("superhero")){
-							//MakinoonName.print("Can I pick a superhero for you?");
-							if(MakinoonName.getInput().toLowerCase().equals("no")){
-								inCostumeLoop = false; 
-								MakinoonName.talkForever();
-								
-							}
-							if(MakinoonName.getInput().toLowerCase().equals("yes")){
-								subject = "superhero";
+						else if(subject.equals("superheroes")){
+							
+						
 								String costumeName = findCostume();
 								MakinoonName.print("The ideal costume for you is " + costumeName + "!");
-							}
+								MakinoonName.talkForever();
+							
 						}else{
 							inCostumeLoop = false; 
 						MakinoonName.talkForever();
@@ -122,7 +121,8 @@ public class MakinoonCostume implements Topic {
 					){
 				coninuing = false;
 				MakinoonName.talkForever();
-			}else{
+			}
+			else{
 				MakinoonName.print("sorry, I can only match "+ options
 						+ "\n Please enter something else");
 				
@@ -135,29 +135,29 @@ public class MakinoonCostume implements Topic {
 	
 	private void makeCostumeList(){
 		//politics - categorized by political party 
-		Costume trump = new Costume("Donald Trump", "n/a", "politics", "depublican", "n/a", "n/a");
+		Costume trump = new Costume("Donald Trump", "n/a", "politics", "republican", "n/a", "n/a");
 		costumeList[0] = trump;
 		Costume hillary = new Costume("Hillary Clinton", "n/a", "politics", "democrat", "n/a", "n/a");
 		costumeList[1] = hillary;
 		//Sports - categorized by jersey colors 
-		Costume mj = new Costume("Michael Jordan", "red", "sport", "n/a", "n/a", "basketball");
+		Costume mj = new Costume("Michael Jordan", "red", "sports", "n/a", "n/a", "basketball");
 		costumeList[2] = mj;
-		Costume ronaldo = new Costume("Christiano Ronaldo", "red", "sport", "n/a", "n/a", "soccer");
+		Costume ronaldo = new Costume("Christiano Ronaldo", "red", "sports", "n/a", "n/a", "soccer");
 		costumeList[3] = ronaldo;
 		
-		Costume westbrook = new Costume("Russell Westbrook", "blue", "sport", "n/a", "n/a", "basketball"); 
+		Costume westbrook = new Costume("Russell Westbrook", "blue", "sports", "n/a", "n/a", "basketball"); 
 		costumeList[4] = westbrook;
-		Costume messi = new Costume("Lionel Messi", "blue", "sport", "n/a", "n/a", "soccer");
+		Costume messi = new Costume("Lionel Messi", "blue", "sports", "n/a", "n/a", "soccer");
 		costumeList[5] = messi;
 		
-		Costume garnett = new Costume("Kevin Garnett", "green", "sport", "n/a", "n/a", "basketball"); 
+		Costume garnett = new Costume("Kevin Garnett", "green", "sports", "n/a", "n/a", "basketball"); 
 		costumeList[6] = garnett;
-		Costume howard = new Costume("Tim Howard", "green", "sport", "n/a", "n/a", "soccer"); 
+		Costume howard = new Costume("Tim Howard", "green", "sports", "n/a", "n/a", "soccer"); 
 		costumeList[7] = howard;
 		
-		Costume bosh = new Costume("Chris Bosh", "black", "sport", "n/a", "n/a", "basketball"); 
+		Costume bosh = new Costume("Chris Bosh", "black", "sports", "n/a", "n/a", "basketball"); 
 		costumeList[8] = bosh;
-		Costume bale = new Costume("Gareth Bale", "black", "sport", "n/a", "n/a", "soccer"); 
+		Costume bale = new Costume("Gareth Bale", "black", "sports", "n/a", "n/a", "soccer"); 
 		costumeList[9] = bale;
 		
 		//music - categorized by genre
@@ -169,13 +169,13 @@ public class MakinoonCostume implements Topic {
 		costumeList[12] = taylor;
 		
 		//Superheroes -catergorized by color also
-		Costume batman = new Costume("Batman", "black", "superhero", "n/a", "n/a", "n/a"); 
+		Costume batman = new Costume("Batman", "black", "superheroes", "n/a", "n/a", "n/a"); 
 		costumeList[13] = batman;
-		Costume flash = new Costume("The Flash", "red", "superhero", "n/a", "n/a", "n/a"); 
+		Costume flash = new Costume("The Flash", "red", "superheroes", "n/a", "n/a", "n/a"); 
 		costumeList[14] = flash;
-		Costume captain = new Costume("Captain America", "blue", "superhero", "n/a", "n/a", "n/a"); 
+		Costume captain = new Costume("Captain America", "blue", "superheroes", "n/a", "n/a", "n/a"); 
 		costumeList[15] = captain;
-		Costume lantern = new Costume("Green Lantern", "green", "superhero", "n/a", "n/a", "n/a"); 
+		Costume lantern = new Costume("Green Lantern", "green", "superheroes", "n/a", "n/a", "n/a"); 
 		costumeList[16] = lantern; 
 		
 		 
@@ -206,6 +206,7 @@ public class MakinoonCostume implements Topic {
 			MakinoonName.talkForever();
 			
 		}
+		
 		String chosenCostume = possibleCostume[0].name; 
 		return chosenCostume ;
 		
