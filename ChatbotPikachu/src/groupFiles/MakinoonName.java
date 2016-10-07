@@ -89,7 +89,7 @@ public class MakinoonName {
 			String after = " ";
 			if (psn + key.length() < phrase.length()){
 				after = phrase.substring(psn + key.length(), psn + 
-						key.length()+1).toLowerCase();
+					key.length()+1).toLowerCase();
 
 			}
 
@@ -106,7 +106,7 @@ public class MakinoonName {
 			}
 			
 				psn = phrase.indexOf(key, psn+1);
-					}
+		}
 		return -1;
 	}
 	//this method is private bc it is only used by the method it is helping 
